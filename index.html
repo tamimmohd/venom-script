@@ -1,190 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>How Well Do You Know Tamim? 😏</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #a18cd1, #fbc2eb);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: Arial, sans-serif;
-    }
-
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 420px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
-
-    .progress {
-      font-size: 14px;
-      color: #777;
-      margin-bottom: 15px;
-    }
-
-    input, textarea {
-      width: 95%;
-      padding: 10px;
-      border-radius: 15px;
-      border: 1px solid #ccc;
-      font-size: 15px;
-      margin-bottom: 12px;
-      resize: none;
-      font-family: Arial, sans-serif;
-    }
-
-    textarea {
-      height: 80px;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      margin: 6px 0;
-      border: none;
-      border-radius: 25px;
-      font-size: 16px;
-      cursor: pointer;
-      background: #ff6b81;
-      color: white;
-      transition: 0.2s;
-    }
-
-    button:hover {
-      transform: scale(1.03);
-    }
-
-    #result {
-      display: none;
-      font-size: 18px;
-      color: #e91e63;
-      margin-top: 15px;
-      white-space: pre-line;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Important Question for SAF 👀</title>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<style>
+  body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#ff758c,#ff7eb3);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    color:#333;
+  }
+  .card {
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    width:90%;
+    max-width:420px;
+    box-shadow:0 15px 30px rgba(0,0,0,0.2);
+    text-align:center;
+  }
+  h1 { font-size:1.6rem; margin-bottom:20px; }
+  .question { margin:20px 0; text-align:left; }
+  .question p { font-weight:bold; margin-bottom:10px; }
+  label { display:block; margin-bottom:8px; cursor:pointer; }
+  textarea { width:100%; padding:10px; border-radius:10px; border:1px solid #ccc; resize:none; min-height:80px; font-size:0.9rem; }
+  button { margin-top:20px; padding:12px; width:100%; border:none; border-radius:12px; background:#ff4d6d; color:white; font-size:1rem; font-weight:bold; cursor:pointer; transition:transform 0.2s; }
+  button:hover { transform:scale(1.05); }
+  .footer { margin-top:15px; font-size:0.75rem; color:#888; }
+</style>
 </head>
-
 <body>
-  <div class="card">
-    <h1>How Well Do You Know Tamim? 😏</h1>
 
-    <!-- NAME STEP -->
-    <div id="step1">
-      <input id="nameInput" placeholder="Enter your name 👀" />
-      <button onclick="startQuiz()">Start</button>
-    </div>
+<div class="card" id="card">
+<h1>SAF 😌 Be honest… but careful 👀</h1>
 
-    <!-- QUIZ -->
-    <div id="quiz" style="display:none;">
-      <div class="progress" id="progress"></div>
-      <div id="question"></div>
-      <button onclick="next()">Option 1</button>
-      <button onclick="next()">Option 2</button>
-      <button onclick="next()">Option 3</button>
-    </div>
+<div id="quiz">
 
-    <!-- RESULT + COMMENT -->
-    <div id="result">
-💖 RESULT 💖
-
-You passed 😌  
-Which means one thing…
-
-You understand Tamim,  
-you choose him,  
-and he’s really lucky to have you ❤️
-
-Before you go…  
-say something to Tamim 👇
-
-<textarea id="comment" placeholder="Type anything you want 💌"></textarea>
-<button onclick="sendComment()">Send</button>
-    </div>
+  <div class="question" id="q1">
+    <p>1️⃣ Why don’t you *pretend* to like Tamim?</p>
+    <label><input type="radio" name="q1" value="Because I act tough but I’m obsessed"> Because I act tough but I’m obsessed</label>
+    <label><input type="radio" name="q1" value="Because he knows I secretly love him"> Because he knows I secretly love him</label>
+    <label><input type="radio" name="q1" value="Because life would be boring without him"> Because life would be boring without him</label>
   </div>
 
-  <script>
-    const questions = [
-      "What is Tamim’s biggest flaw?",
-      "What does Tamim value the most?",
-      "Why does Tamim act annoying sometimes?",
-      "What makes Tamim happiest?",
-      "What does Tamim appreciate most about you?"
-    ];
+  <div class="question" id="q2" style="display:none">
+    <p>2️⃣ What is Tamim’s biggest problem?</p>
+    <label><input type="radio" name="q2" value="He loves me too much"> He loves me too much</label>
+    <label><input type="radio" name="q2" value="He’s too handsome for this world"> He’s too handsome for this world</label>
+    <label><input type="radio" name="q2" value="He exists and now I’m attached"> He exists and now I’m attached</label>
+  </div>
 
-    const options = [
-      ["Being too handsome 😎", "Caring too much ❤️", "Overthinking 🤯"],
-      ["Loyalty 🤝", "Respect 🙏", "You 💘"],
-      ["Because he’s bored 😅", "Because he’s comfortable 🥹", "Because he likes you 😏"],
-      ["Food 🍕", "Achievements 🏆", "Seeing you smile 😊"],
-      ["Your honesty 💬", "Your support 🤍", "Everything about you 😌"]
-    ];
+  <div class="question" id="q3" style="display:none">
+    <p>3️⃣ If Tamim disappeared for a day, what would you do?</p>
+    <label><input type="radio" name="q3" value="Panic silently"> Panic silently</label>
+    <label><input type="radio" name="q3" value="Miss him way too much"> Miss him way too much</label>
+    <label><input type="radio" name="q3" value="Wait dramatically for his return"> Wait dramatically for his return</label>
+  </div>
 
-    let index = 0;
-    let userName = "";
+  <div class="question" id="q4" style="display:none">
+    <p>4️⃣ Final verdict on Tamim?</p>
+    <label><input type="radio" name="q4" value="Annoying but irreplaceable"> Annoying but irreplaceable</label>
+    <label><input type="radio" name="q4" value="My favorite person (don’t tell him)"> My favorite person (don’t tell him)</label>
+    <label><input type="radio" name="q4" value="Unfortunately perfect"> Unfortunately perfect</label>
+  </div>
 
-    function startQuiz() {
-      userName = document.getElementById("nameInput").value || "SAF";
-      document.getElementById("step1").style.display = "none";
-      document.getElementById("quiz").style.display = "block";
-      showQuestion();
-    }
+  <div class="question" id="q5" style="display:none">
+    <p>💬 Say something you’d never say out loud:</p>
+    <textarea id="comment" placeholder="Be brave… Tamim will read this 👀"></textarea>
+  </div>
 
-    function showQuestion() {
-      document.getElementById("progress").innerText =
-        `Question ${index + 1} of ${questions.length}`;
-      document.getElementById("question").innerText = questions[index];
+  <button id="nextBtn" onclick="next()">Next</button>
+</div>
 
-      const btns = document.querySelectorAll("#quiz button");
-      btns.forEach((b, i) => b.innerText = options[index][i]);
-    }
+<div id="finalMsg" style="display:none">
+  <h1>🎉 Congrats SAF! 🎉</h1>
+  <p>You survived Tamim’s personality 😌<br>
+  Joke aside… he’s really lucky to have you ❤️<br>
+  And now he gets to read your message 💌</p>
+  <button onclick="restart()">Restart Quiz</button>
+</div>
 
-    function next() {
-      index++;
-      if (index < questions.length) {
-        showQuestion();
-      } else {
-        finish();
+<div class="footer">
+  Made with love by Tamim 💕
+</div>
+</div>
+
+<script>
+let step = 1;
+
+function next() {
+  if(step < 5){
+    // make sure a choice is selected for 1-4
+    if(step < 5){
+      const radios = document.querySelectorAll(`#q${step} input`);
+      if(step<5 && step!=5){
+        let checked = false;
+        radios.forEach(r=>{if(r.checked) checked=true;});
+        if(!checked){ alert("Choose an answer!"); return; }
       }
     }
+    document.getElementById(`q${step}`).style.display="none";
+    step++;
+    document.getElementById(`q${step}`).style.display="block";
+    if(step==5) document.getElementById("nextBtn").innerText="Submit";
+  } else {
+    // submit
+    const q1 = document.querySelector('input[name="q1"]:checked').value;
+    const q2 = document.querySelector('input[name="q2"]:checked').value;
+    const q3 = document.querySelector('input[name="q3"]:checked').value;
+    const q4 = document.querySelector('input[name="q4"]:checked').value;
+    const comment = document.getElementById("comment").value || "No comment 😅";
 
-    function finish() {
-      confetti();
-      document.getElementById("quiz").style.display = "none";
-      document.getElementById("result").style.display = "block";
-    }
+    confetti();
 
-    function sendComment() {
-      const comment = document.getElementById("comment").value || "No comment 😅";
+    fetch("https://formspree.io/f/mykdgzbd", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({
+        q1,q2,q3,q4,comment,submitted_for:"Tamim 💖"
+      })
+    });
 
-      fetch("https://formspree.io/f/mykdgzbd", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: userName,
-          quiz: "Tamim Ultimate Quiz 💘",
-          message: comment
-        })
-      });
+    document.getElementById("quiz").style.display="none";
+    document.getElementById("finalMsg").style.display="block";
+  }
+}
 
-      document.getElementById("comment").value = "";
-      alert("Message sent 💌");
-    }
-  </script>
+function restart(){
+  location.reload();
+}
+</script>
 </body>
 </html>
