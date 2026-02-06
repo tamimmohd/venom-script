@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>How Well Do You Know Tamim? 😏</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 420px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .progress {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 15px;
+    }
+
+    input, textarea {
+      width: 95%;
+      padding: 10px;
+      border-radius: 15px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      margin-bottom: 12px;
+      resize: none;
+      font-family: Arial, sans-serif;
+    }
+
+    textarea {
+      height: 80px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin: 6px 0;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      background: #ff6b81;
+      color: white;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.03);
+    }
+
+    #result {
+      display: none;
+      font-size: 18px;
+      color: #e91e63;
+      margin-top: 15px;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>How Well Do You Know Tamim? 😏</h1>
+
+    <!-- NAME STEP -->
+    <div id="step1">
+      <input id="nameInput" placeholder="Enter your name 👀" />
+      <button onclick="startQuiz()">Start</button>
+    </div>
+
+    <!-- QUIZ -->
+    <div id="quiz" style="display:none;">
+      <div class="progress" id="progress"></div>
+      <div id="question"></div>
+      <button onclick="next()">Option 1</button>
+      <button onclick="next()">Option 2</button>
+      <button onclick="next()">Option 3</button>
+    </div>
+
+    <!-- RESULT + COMMENT -->
+    <div id="result">
+💖 RESULT 💖
+
+You passed 😌  
+Which means one thing…
+
+You understand Tamim,  
+you choose him,  
+and he’s really lucky to have you ❤️
+
+Before you go…  
+say something to Tamim 👇
+
+<textarea id="comment" placeholder="Type anything you want 💌"></textarea>
+<button onclick="sendComment()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      "What is Tamim’s biggest flaw?",
+      "What does Tamim value the most?",
+      "Why does Tamim act annoying sometimes?",
+      "What makes Tamim happiest?",
+      "What does Tamim appreciate most about you?"
+    ];
+
+    const options = [
+      ["Being too handsome 😎", "Caring too much ❤️", "Overthinking 🤯"],
+      ["Loyalty 🤝", "Respect 🙏", "You 💘"],
+      ["Because he’s bored 😅", "Because he’s comfortable 🥹", "Because he likes you 😏"],
+      ["Food 🍕", "Achievements 🏆", "Seeing you smile 😊"],
+      ["Your honesty 💬", "Your support 🤍", "Everything about you 😌"]
+    ];
+
+    let index = 0;
+    let userName = "";
+
+    function startQuiz() {
+      userName = document.getElementById("nameInput").value || "SAF";
+      document.getElementById("step1").style.display = "none";
+      document.getElementById("quiz").style.display = "block";
+      showQuestion();
+    }
+
+    function showQuestion() {
+      document.getElementById("progress").innerText =
+        `Question ${index + 1} of ${questions.length}`;
+      document.getElementById("question").innerText = questions[index];
+
+      const btns = document.querySelectorAll("#quiz button");
+      btns.forEach((b, i) => b.innerText = options[index][i]);
+    }
+
+    function next() {
+      index++;
+      if (index < questions.length) {
+        showQuestion();
+      } else {
+        finish();
+      }
+    }
+
+    function finish() {
+      confetti();
+      document.getElementById("quiz").style.display = "none";
+      document.getElementById("result").style.display = "block";
+    }
+
+    function sendComment() {
+      const comment = document.getElementById("comment").value || "No comment 😅";
+
+      fetch("https://formspree.io/f/mykdgzbd", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: userName,
+          quiz: "Tamim Ultimate Quiz 💘",
+          message: comment
+        })
+      });
+
+      document.getElementById("comment").value = "";
+      alert("Message sent 💌");
+    }
+  </script>
+</body>
+</html>
